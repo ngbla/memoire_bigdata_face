@@ -1,0 +1,16 @@
+-------------------- Auto-Git Log --------------------
+		Thu Mar 25 2021 14:38:13 GMT+0000 (heure moyenne de Greenwich)
+------------------------------------------------------
+
+Modified files:
+* README.md
+
+
+Created files:
+* .autogit/logs/log-25-2-2021-13-46-45.txt
+
+
+Deleted files:
+
+
+Renamed files:
