@@ -1,3 +1,10 @@
+# -*- coding: utf-8 -*-
+"""
+Éditeur de Spyder
+
+Ceci est un script temporaire.
+"""
+
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
@@ -15,7 +22,7 @@ print(np.__version__)
 
 #face_cascade = cv.CascadeClassifier('haarcascade_frontalface_default.xml')
 face_cascade = cv.CascadeClassifier('webcammer-master/haarcascade_frontalface_default.xml')
-eye_cascade = cv.CascadeClassifier('haarcascade_eye.xml')
+eye_cascade = cv.CascadeClassifier('webcammer-master/haarcascade_eye.xml')
 
 cap = cv.VideoCapture(0)
 if not cap.isOpened():
@@ -47,6 +54,7 @@ while True:
         roi_gray = gray[y:y+h, x:x+w]
         roi_color = frame[y:y+h, x:x+w]
         eyes = eye_cascade.detectMultiScale(roi_gray)
+        print("Un Visage détecter !")
         for (ex,ey,ew,eh) in eyes:
             cv.rectangle(roi_color,(ex,ey),(ex+ew,ey+eh),(0,255,0),2)
 
