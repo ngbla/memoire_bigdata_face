@@ -1,0 +1,32 @@
+#
+# To activate this environment, use
+#
+#     $ conda activate memoire
+#
+# To deactivate an active environment, use
+#
+#     $ conda deactivate
+
+
+https://docs.anaconda.com/anaconda/packages/py3.8_linux-64/
+install package
+
+conda env list
+env : memoire , base , mem37
+conda install gcc nompackage
+
+Install different version of Python in a new environment named py34
+
+conda create --name mem37 python=3.7
+
+switch env
+source activate mem37
+
+
+conda info
+conda install PACKAGENAME
+spyder
+
+::list package : conda list
+
+python --version

@@ -1,0 +1,15 @@
+git pull
+
+Cette commande indique à Git que le fichier (ou dossier) nommé "nom_fichier_ou_dossier" devra être versionné.
+
+git add --all *
+
+Met à jour votre dépôt local (à faire avant de commencer à modifier des fichiers pour être sûr de travailler sur leurs dernières versions et avant tout commit pour éviter les éventuels conflits avec des modifications effectuées par d'autres utilisateurs entre temps).
+
+git commit <fichier1> <fichier2>
+
+git commit -a
+Crée un nouveau commit contenant tous les changements effectués sur les fichiers (git add n'est donc pas nécessaire avant un commit -a).
+
+git push origin master
+Envoie le commit dans la branche principale "master" du dépôt "origin".

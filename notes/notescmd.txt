@@ -1,0 +1,3 @@
+Installation fichier .deb
+sudo dpkg -i package_file.deb
+
