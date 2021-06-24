@@ -1,0 +1,31 @@
+*** img_training
+Banque d'image pour l'entrainement.
+Les images sont dans des dossiers ayant pour nom l'id de la personne
+exemple: id = 1
+ --dossier:  1
+ ---image : 1_1.jpg
+ ---image : 1_2.jpg
+
+*** img_test
+Image à tester ayant pour nom l'id de la personne
+exemple : 1.jpg
+
+*** output
+Résultat
+
+*** visualisation
+
+::::::::Entrainement::::::::::::::
+train_model.py
+
+
+::::::::Prediction::::::::::::::
+predict.py
+
+::::::::Prediction::::::::::::::
+draw.py
+
+
+
+
+
