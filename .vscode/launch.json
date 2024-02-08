@@ -1,0 +1,36 @@
+{
+  // Utilisez IntelliSense pour en savoir plus sur les attributs possibles.
+  // Pointez pour afficher la description des attributs existants.
+  // Pour plus d'informations, visitez : https://go.microsoft.com/fwlink/?linkid=830387
+  // C:\Users\ELVIS\Documents\NGBLA\Wamp64\www\Projets\CODE_NGBLA\memoire_bigdata_face\memoire\main.py
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Débogueur Python : Joindre à l'aide de l'ID de processus",
+      "type": "debugpy",
+      "request": "attach",
+      "processId": "${command:pickProcess}"
+    },
+    {
+      "name": "Débogueur Python : Fichier actuel",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${file}",
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "View memoire/main.py : Débogueur Python",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/memoire/main.py",
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "Train memoire/entrainement.py : Débogueur Python",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/memoire/entrainement.py",
+      "console": "integratedTerminal"
+    }
+  ]
+}
