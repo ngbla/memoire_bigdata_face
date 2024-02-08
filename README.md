@@ -63,3 +63,4 @@ env/Scripts/pip.exe install pandas
 env/Scripts/pip.exe install opencv-contrib-python
 
 env/Scripts/pip.exe install pyscreenshot
+env/Scripts/pip.exe install pillow

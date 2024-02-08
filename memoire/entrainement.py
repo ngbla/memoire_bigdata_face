@@ -24,6 +24,8 @@ modelTrain = "memoire/trainingEigen.yml"
 # #img_modif_train #img_training"
 for users in os.listdir(img_training): 
     names.append(users)
+    
+print('[USERS] = ', names)
 
 # Get the path to all the images 
 for name in names: 
@@ -31,8 +33,7 @@ for name in names:
         path_string = os.path.join(img_training+"\{}".format(name), image)
         path.append(path_string)
 
-print('[PATH]')
-print(path_string)
+print('[PATH] = ', path_string)
 faces = []
 ids = []
 
@@ -49,10 +50,11 @@ for img_path in path:
     # image = np.array(image, "uint8")
     #print('[INFO] - Face detection ... ')
     face, gray_image, cv = detect_face(image,cv)
+    
     if face is not None :
-        print('[INFO] Face ok')
+        print('[INFO] Face OK')
         print('[INFO] img_path', img_path)
-        #face = cv.resize(face,(im_width, im_height) )
+        # face = cv.resize(face,(im_width, im_height) )
         (x, y, w, h) = face[0]
         facedet = gray_image[y : y + h, x : x + w]
         face_resize =facedet
@@ -70,16 +72,23 @@ print("[INFO] Initializing the Classifier")
 # Make sure contrib is installed
 # The command is pip install opencv-contrib-python
 # Call the recognizer
-#trainer = cv2.face.LBPHFaceRecognizer_create()
-#or use EigenFaceRecognizer by replacing above line with
-trainer = cv.face.EigenFaceRecognizer_create()
-#or use FisherFaceRecognizer by replacing above line with
-#trainer = cv2.face.FisherFaceRecognizer_create() names Numpy Arrays")
+
+#create our LBPH face recognizer 
+face_recognizer_LBPH= cv.face.LBPHFaceRecognizer_create()
+
+#or use EigenFaceRecognizer by replacing above line with 
+face_recognizer_Eigen = cv.face.EigenFaceRecognizer_create()
+
+#or use FisherFaceRecognizer by replacing above line with 
+face_recognizer_Fisher = cv.face.FisherFaceRecognizer_create()
+
+face_recognizer = face_recognizer_LBPH
+
 # Give the faces and ids numpy arrays
-trainer.train(faces, ids)
+face_recognizer.train(faces, ids)
 # Write the generated model to a yml file
 #trainer.write("training.yml")
-trainer.write(modelTrain)
+face_recognizer.write(modelTrain)
 print("[INFO] Training Done")
 print("[INFO] Total faces :",len(faces))
 print("[INFO] Total Labels :",len(ids))

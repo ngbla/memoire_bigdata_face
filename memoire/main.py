@@ -25,12 +25,12 @@ names = ["0-Inconnu","1-Ngbla"]
 users= []
 """
 for users in os.listdir("img_training"):
- if (users == "1" or users == 1):
- #print(users)
- names.append(txt.format(users,"Ngbla") )
- if (users == "2" or users == 2) :
- #print(users)
- names.append(txt.format(users,"Elvis") )
+if (users == "1" or users == 1):
+#print(users)
+names.append(txt.format(users,"Ngbla") )
+if (users == "2" or users == 2) :
+#print(users)
+names.append(txt.format(users,"Elvis") )
 
 """
 #-- END Infos User for recongnition 

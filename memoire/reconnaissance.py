@@ -14,6 +14,7 @@ import os
 
 import pyscreenshot as ImageGrab
 import time
+from PIL import Image as ImagePil
 
 # Begin fonction
 def recongition(frame,ret,names,cv):
@@ -28,12 +29,13 @@ def recongition(frame,ret,names,cv):
     
     # Call the recognizer
     # Call the trained model yml file to recognize faces
-    #recognizer = cv2.face.LBPHFaceRecognizer_create()
+    recognizer_LBPH = cv.face.LBPHFaceRecognizer_create()
     #or use EigenFaceRecognizer by replacing above line with
-    recognizer = cv.face.EigenFaceRecognizer_create()
+    recognizer_Eigen = cv.face.EigenFaceRecognizer_create()
     #or use FisherFaceRecognizer by replacing above line with 
+    recognizer_Fisher = cv.face.FisherFaceRecognizer_create()
     
-    #recognizer = cv.face.FisherFaceRecognizer_create() names Numpy Arrays")
+    recognizer = recognizer_LBPH
     print('--(!)recongition read : trainingEigen')
     #recognizer.read("training.yml")
     recognizer.read(modelTrain)
@@ -53,7 +55,7 @@ def recongition(frame,ret,names,cv):
     # Try to predict the face and get the id
     # Then check if id == 1 or id == 2
     # Accordingly add the names
-     #reps ="{0} - {1} "
+    reps ="{0} - {1} "
 
     for (x, y, w, h) in faces:
         print('-- face detecter --')
@@ -71,7 +73,6 @@ def recongition(frame,ret,names,cv):
         facedet = gray_image[y : y + h, x : x + w]
         face_resize = facedet
         face_resize = cv.resize(face_resize, (im_width, im_height))
-
         #Convert to array
         #imgNp = np.array(face_resize, "uint8")
         #Affichage
@@ -79,17 +80,21 @@ def recongition(frame,ret,names,cv):
 
         # Try to recognize the face
         id, conf = recognizer.predict(face_resize)
+        #taux = round(conf/10000, 3)+"%"
+        #taux_verif = 5000
+        #LBPHF
+        taux = str(round(conf, 3))+"%"
+        taux_verif = 50
+        
 
-        print('[USER ID]')
-        print(id)
-        print('[PRECISION]')
-        print(conf)
-        if ((id> 1 or 5> id) and conf > 6500):
+        print('[USER ID] = ', id)
+        print('[PRECISION] = ', conf)
+        if ((id> 1 or 5> id) and conf > taux_verif):
             cv.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
             cv.putText(
                 frame,
-                #reps.format(names[id - 1],conf),
-                names[id],
+                reps.format(names[id],taux),
+                #names[id],
                 (x, y - 4),
                 cv.FONT_HERSHEY_SIMPLEX,
                 0.8,
@@ -99,14 +104,12 @@ def recongition(frame,ret,names,cv):
             )
 
             print('-- id user=', id)
-            print('-- precision =', conf)
-
         else:
             cv.rectangle(frame, (x, y), (x + w, y + h), (255,0,0), 2)
             cv.putText(
                 frame,
-                #reps.format("Unknown",conf),
-                "0-Inconnu",
+                reps.format("Unknown",taux),
+                #"0-Inconnu",
                 (x, y - 4),
                 cv.FONT_HERSHEY_SIMPLEX,
                 0.8,
@@ -115,26 +118,16 @@ def recongition(frame,ret,names,cv):
                 cv.LINE_AA,
             )
             print('-- Unknown')
-            print('-- precision = %.0f', conf)
             # Save image
             t1 = time.time()
-            imgScreen = ImageGrab.grab(backend="mss", childprocess=False)
-            img = imgScreen.resize((640,480))
-            #img.save(newImgDir+"/"+t1+"screen.png")
-            img.save(newImgDir+"/"+"screen.png")
-            t2 = time.time()
-            print("The passing time",(t2-t1))
+            #imgScreen = ImageGrab.grab(backend="mss", childprocess=False)
+            #img = imgScreen.resize((640,480))
+            #img.save(newImgDir+"/"+str(t1)+"screen.png")
+            
+            #img.save(newImgDir+"/"+"screen.png")
+            #cv.imshow("Resized image", frame)
+            im = ImagePil.fromarray(facedet)
+            #im.save(newImgDir+"/"+str(id)+"_"+str(t1)+".png")
             
     cv.imshow("Recognize", frame)
 # End fonction 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
